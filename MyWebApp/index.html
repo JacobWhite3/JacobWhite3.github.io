@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=“UTF-8”>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Access Webmap</title>
+
+  <!-- added code for bootstrap -->
+  <link rel="stylesheet" href="JS_CSS_downloaded_libraries/bootstrap_v3.4.1.min.css">
+
+  <!-- added code for uptappd -->
+  <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/styles_dc_untappd.css">
+  <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/styles_leaflet_untappd.css">
+  <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap_v3.3.5.css">
+
+  <!-- added code for legend -->
+  <link rel="stylesheet" href="myCSS_styleFiles/storeMap_CSS_Styles.css">
+  <link rel="stylesheet" href="myCSS_styleFiles/legend.css">
+
+  <!-- added code for bootstrap -->
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/jquery.min_v3.4.1.js"></script>
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/bootstrap.min_v3.4.1.js"></script>
+  <!-- added code for untappd -->
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/d3_v3.5.5.js " charset="utf-8"></script>
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/crossfilter_v1.3.11.js"></script>
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/dc_v2.0.0-beta.11.js" charset="utf-8"></script>
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/leaflet_Crossfilter.js"></script>
+  <script type="text/javascript" src="JS_CSS_downloaded_libraries/underscore-min_1.8.3.js"></script>
+
+
+  <script type="text/javascript" src="myJS_scripts/Main.js"></script>
+
+</head>
+<header>
+  <h1> Food Access Webmap <h1>
+</header>
+
+<body>
+  <script type="text/javascript">
+    $(window).on('load', function () {
+      $('#myModal_md').modal('show');
+    });
+  </script>
+
+  <div class="row">
+    <div class="col-xs-4">
+
+      <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal_md">About this
+          project</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal_md" role="dialog">
+          <!-- Large Modal -->
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Food Access Webmap</h4>
+              </div>
+              <div class="modal-body">
+                <!-- add text to apper in modal here in paragraph area -->
+                <h3> <b>About this project:</b> <br> </h3>
+
+                <p> The pressing issue of food access within New Mexico presents a unique set of challenges that merit
+                  focused attention and innovative solutions. Grounded in the broader context of urban and rural food
+                  deserts, existing literature underscores the critical role of geographical analysis tools in
+                  illuminating the dynamics of food availability.
+
+                  Many studies regarding this topic predominantly pivot around datasets from entities like the United
+                  States Department of Agriculture (USDA) and incorporate a variety of retail food outlets, including
+                  both large grocery retailers, and more commonly smaller local options. Methods that are often used to
+                  indicate food access rely on metrics such as: proximity to grocery retailers, income, and
+                  transportation. This methodological groundwork set the stage for a nuanced examination of food access,
+                  revealing the complexity of factors that contribute to food deserts.
+
+                  Across New Mexico, the intricate web between geographical isolation, socio-economic factors, and
+                  limited infrastructure compounds the challenges of securing adequate food access. Rather than relying
+                  on standard methodologies used to assess food access our map offers a different approach to the
+                  topic by examining the overall abundance and saturation of food sources (often retailers) and
+                  categorizes
+                  them by type to provide an in depth understanding of what types of retailers service particular areas
+                  which often affects the availability of healthy and nutritious foods in different areas. This map is
+                  based
+                  on SNAP retailers in New Mexico which we filtered for reliability and relevance to our project.
+
+
+                  This approach seeks to provide a comparative analysis to predominant methodologies used to indicate
+                  food access highlighting a dimension of food access that is often not depicted and has potentially
+                  valueable
+                  for policymakers, community leaders, and stakeholders to devise targeted interventions for improving
+                  food
+                  security.
+
+
+                  <br>
+                  <b>About the People </b>
+                  <br> Developers:
+                  <br>Amber Rivera: <a href="https://github.com/arivera169/arivera169.github.io" target="_blank">
+                    Amber's Professional Website</a>
+                  <br>Jacob White: <a href="https://jacobwhite3.github.io/" target="_blank">
+                    Jacob's Professional Website</a>
+                  <br>Carl Sanfilipo: <a href="https://CarlSanfilipo.github.io" target="_blank"> Carl's Professional
+                    Website</a>
+                  <br>Professor:
+                  <br>Liping Yang <a href="https://lipingyang.org/" target="_blank">Dr. Yang's Website</a>
+                  <br>
+                  <br> <b>Data Sources:</b>
+                  <br> <a
+                    href="https://usda-fns.maps.arcgis.com/apps/webappviewer/index.html?id=15e1c457b56c4a729861d015cd626a23"
+                    target="_blank"> SNAP Retailer Locator </a>
+
+                  <br>
+                  <br> <b> Insipration: </b>
+                  <br><a href="https://ers.usda.gov/data-products/food-access-research-atlas/go-to-the-atlas/"
+                    target="_blank">https://ers.usda.gov/data-products/food-access-research-atlas/go-to-the-atlas/</a>
+                  <br><a href="https://nativeland.info/explore-topics/food-system-transition-index-fsti/"
+                    target="_blank">
+                    https://nativeland.info/explore-topics/food-system-transition-index-fsti/</a>
+
+
+
+                  <br>
+                  <br><b>Acknowledgements:</b>
+                  <br> This webmap adapted code from two sources to create this webmap:
+                  <br><a href="https://github.com/austinlyons/dcjs-leaflet-untappd" target="_blank"> Beer Drinking Data
+                    Vizualization</a>
+                  <br> <a href="https://geoair-lab.github.io/WaterFeatureAI-WebApp/index.html" target="_blank">
+                    Literature of Intelligent Water Information Extraction Using AI</a>
+                  <br>
+                  <br> Special thanks to Liping Yang <a href="https://geoair.lipingyang.org/" target="_blank"> Dr.
+                    Yang's GEOAIR Lab</a>
+                  <br>
+                  <br> <u>This webmap was created for the final project for GEOG 485L Interactive Web Mapping</u>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 dc-data-count dc-chart" id="data-count">
+        <h2>Store Locator
+          <small>
+            <span class="filter-count"></span> selected out of <span class="total-count"></span> records |
+            <a id="all" href="#">Reset All</a>
+            </span>
+          </small>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-4 pie-chart">
+        <h4>Store Type <small><a id="store" href="#">reset</a></small></h4>
+        <div class="dc-chart" id="chart-ring-store"></div>
+      </div>
+      <div class="col-xs-4 pie-chart">
+        <h4>County <small><a id="county" href="#">reset</a></small></h4>
+        <div class="dc-chart" id="chart-ring-county"></div>
+      </div>
+      <div class="col-xs-4 pie-chart">
+        <h4>City <small><a id="city" href="#">reset</a></small></h4>
+        <div class="dc-chart" id="chart-ring-city"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <!-- Dr. Yang added legend START -->
+      <!-- Legend bar above the map  -->
+      <div class="row legend">
+        <strong> Store Type: </strong>
+        <span class=".circle-Bakery-Specialty"></span> Bakery Specialty
+        <span class=".circle-Combination-Grocery-Other"></span> Combination Grocery/Other
+        <span class="circle-Farmers-Market"></span> Farmers' Market
+        <span class="circle-Fruits-Veg-Specialty"></span> Fruits/Veg Specialty
+        <span class="circle-Food-Buying-Co-op"></span> Food Buying Co-op
+        <span class="circle-Large-Grocery-Store"></span> Large Grocery Store
+        <span class="circle-Meat-Poultry-Specialty"></span> Meat/Poultry Specialty
+        <span class="circle-Medium-Grocery-Store"></span> Medium Grocery Store
+        <span class="circle-Small-Grocery-Store"></span> Small Grocery Store
+        <span class="circle-Super-Store"></span> Super Store
+        <span class="circle-Supermarket"></span> Super Market
+        <span class="circle-Unknown"></span> Unknown
+        <span class="circle-Wholesaler"></span> Wholesaler
+        <!-- remember to add more css code for more store type in the legend_css.css file Dr. Yang added in the myCSS_styleFiles fodler -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Dr. Yang added legend END -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+
+      </div>
+      <div style="width:100%; height: 500px" id="mapId2"></div>
+    </div>
+  </div>
+
+  <!-- added data table by Dr. Yang --START -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <h2>Stores Data Table </h2>
+      <div class="col-xs-12">
+        <table style="width: 100%" class="table table-bordered table-striped" id="data-table">
+          <thead>
+            <tr class="header">
+              <th>Store Name</th>
+              <!-- <th>Score </th> -->
+              <th>Full Address </th>
+              <th>City</th>
+              <th>County</th>
+              <th>Store Type</th>
+              <!-- make sure the order is the same in the Main.js dataTable code column. -->
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- added data table by Dr. Yang --END -->
+  </div>
+  </div>
+  <h3 class="offsetheading"> Media Library</h3>
+  <div class="row">
+    <div class="col-xs-12">
+      <iframe style="padding:75px" width="100%" height="900px"
+        src="https://www.youtube.com/embed/I8fDRO9T3CM?si=A4PBduTEl-YDQBNN" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    </div>
+  </div>
+</body>
+
+</html>
